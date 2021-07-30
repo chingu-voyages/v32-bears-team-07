@@ -1,6 +1,18 @@
 # Getting Started with Create React App
 
+2021/07/29 
+
+-Set up create-react-app
+-added react-bootstrap https://react-bootstrap.github.io/
+-added bootstrap theme : https://bootswatch.com/minty/
+-added cdn font-awesome icons: https://cdnjs.com/libraries/font-awesome 
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+
 
 ## Available Scripts
 
