@@ -21,18 +21,39 @@ router.post("/register", async (req, res) => {
 });
 
 //LOGIN
+// router.post("/login", async (req, res) => {
+//   try {
+//     const user = await User.findOne({ username: req.body.username });
+//     !user && res.status(400).json("Wrong credentials!");
+
+//     const validated = await bcrypt.compare(req.body.password, user.password);
+//     !validated && res.status(401).json("Wrong credentials!");
+
+//     const { password, ...info } = user._doc;
+//     res.status(200).json(info);
+//   } catch (err) {
+//     res.status(401).json(err);
+//   }
+// });
+
+
+// New LOGIN
+// Server crashed each time after "wrong credentials!" message (above) sent
+// Fixed error by embedding the !validated error message in an if statement.
+
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
     !user && res.status(400).json("Wrong credentials!");
 
     const validated = await bcrypt.compare(req.body.password, user.password);
-    !validated && res.status(400).json("Wrong credentials!");
-
+    if (!validated) {
+      return res.status(401).json("Wrong credentials!")
+    };
     const { password, ...info } = user._doc;
     res.status(200).json(info);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(401).json(err);
   }
 });
 
