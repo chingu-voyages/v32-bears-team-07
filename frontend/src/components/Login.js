@@ -1,12 +1,16 @@
-import React from "react";
+import { React, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import AuthApiService from '../Api-Service';
 import "./login.css";
 
 const Login = (props) => {
 
+  const [error, setError] = useState('')
+
   function handleSubmit(event) {
     event.preventDefault()
+
+    setError('wrong credentials')
 
     const { username, password } = event.target
 
@@ -20,9 +24,9 @@ const Login = (props) => {
         // TokenService.saveAuthToken(res.authToken)
         // this.props.onLoginSuccess()
       })
-      // .catch(res => {
-      //   this.setState({ error: res.error })
-      // })
+    .catch(res => {
+      setError('wrong credentials')
+    })
   }
 
   return (
@@ -30,6 +34,10 @@ const Login = (props) => {
       <Container className="loginContainer">
         <Row md={1.5} lg={2} className="justify-content-center">
           <Col className="text-center">
+            <div className="errorMessage">
+              {error}
+            </div>
+              
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
