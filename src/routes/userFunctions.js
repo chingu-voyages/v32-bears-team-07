@@ -48,4 +48,15 @@ router.delete("/:userId", async (req, res) => {
   }
 });
 
+// Get User
+router.get("/:userId", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const { password, paymentInfo, ...info } = user._doc;
+    res.status(200).json(info);
+  } catch (err) {
+    res.status(404).json("User not found");
+  }
+});
+
 module.exports = router;
