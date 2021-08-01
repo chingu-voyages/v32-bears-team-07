@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container } from "react-bootstrap";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
+// import Login from "./components/Login";
+// import SignUp from "./components/SignUp";
+import GrapesJS from "./components/GrapesJS";
 
 const App = () => {
-  const [displayLogin, setDisplayLogin] = useState(true);
+  // const [displayLogin, setDisplayLogin] = useState(true);
 
-  const toggleDisplayLogin = () => {
-    setDisplayLogin(!displayLogin);
-  };
+  // const toggleDisplayLogin = () => {
+  //   setDisplayLogin(!displayLogin);
+  // };
 
   return (
     <>
@@ -20,11 +21,7 @@ const App = () => {
           <h1>Welcome to popup shop</h1>
         </Container>
 
-        {displayLogin ? (
-          <Login toggleDisplayLogin={toggleDisplayLogin} />
-        ) : (
-          <SignUp />
-        )}
+        <GrapesJS />
       </main>
 
       <Footer />
