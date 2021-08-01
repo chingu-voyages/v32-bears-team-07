@@ -7,7 +7,7 @@ const Login = (props) => {
 
   function handleSubmit(event) {
     event.preventDefault()
-    // this.setState({ error: null })
+
     const { username, password } = event.target
 
     AuthApiService.postLogin({
@@ -30,7 +30,7 @@ const Login = (props) => {
       <Container className="loginContainer">
         <Row md={1.5} lg={2} className="justify-content-center">
           <Col className="text-center">
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
                 <Form.Control name="username" type="username" placeholder="Enter username" />

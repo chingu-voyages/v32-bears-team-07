@@ -1,17 +1,14 @@
-import { React, useState } from "react";
+import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import AuthApiService from '../Api-Service';
 import "./signup.css";
 
 const SignUp = () => {
 
-  // const {error, setError} = useState(null)
-
   function handleSubmit(event) {
     event.preventDefault()
     const { username, email, password } = event.target
 
-    // setError({ error: null })
     AuthApiService.postUser({
       username: username.value,
       email: email.value,
@@ -32,7 +29,7 @@ const SignUp = () => {
       <Container className="signUpContainer">
         <Row md={1.5} lg={2} className="justify-content-center">
           <Col className="text-center">
-            <Form onSubmit={handleSubmit} >
+            <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicName">
                 <Form.Label>Name</Form.Label>
                 <Form.Control name="username" type="username" placeholder="Enter name" />
