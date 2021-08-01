@@ -59,4 +59,18 @@ router.get("/:userId", async (req, res) => {
   }
 });
 
+// Get all users
+router.get("/", async (req, res) => {
+  try {
+    let allUsers = await User.find({});
+    allUsers = allUsers.map((user) => {
+      const { password, paymentInfo, ...info } = user._doc;
+      return info;
+    });
+    res.status(200).json(allUsers);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
