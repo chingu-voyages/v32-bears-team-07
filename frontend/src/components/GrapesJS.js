@@ -55,13 +55,6 @@ const GrapesJS = () => {
                 command: "show-styles",
                 togglable: false,
               },
-            ],
-          },
-          {
-            id: "panel-switcher",
-            el: ".panel__switcher",
-            buttons: [
-              // ...
               {
                 id: "show-traits",
                 active: true,
