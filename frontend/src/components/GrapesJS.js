@@ -180,6 +180,21 @@ const GrapesJS = () => {
       traitManager: {
         appendTo: ".traits-container",
       },
+      mediaCondition: "min-width", // default is `max-width`
+      deviceManager: {
+        devices: [
+          {
+            name: "Mobile",
+            width: "320",
+            widthMedia: "",
+          },
+          {
+            name: "Desktop",
+            width: "",
+            widthMedia: "1024",
+          },
+        ],
+      },
     });
 
     editor.BlockManager.add("my-block-id", {
@@ -321,6 +336,11 @@ const GrapesJS = () => {
     editor.Commands.add("set-device-mobile", {
       run: (editor) => editor.setDevice("Mobile"),
     });
+    editor.on("change:device", () =>
+      console.log("Current device: ", editor.getDevice())
+    );
+    // Set initial device as Mobile
+    // editor.setDevice("Mobile");
   });
 
   return (
