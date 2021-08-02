@@ -29,4 +29,19 @@ router.get("/:productId", async (req,res) => {
     }
 })
 
+// Delete product
+router.delete("/:productId", async (req,res) => {
+    try{
+        await Product.findById(req.params.productId);
+        try{
+            await Product.findByIdAndDelete(req.params.productId);
+            res.status(200).json("Product deleted")
+        }catch(err){
+            res.status(404).json(err)
+        }
+    }catch(err){
+        res.status(404).json("Product not found")
+    }
+})
+
 module.exports = router;
