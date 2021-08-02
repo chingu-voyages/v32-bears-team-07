@@ -19,4 +19,14 @@ router.post("/",async (req,res) => {
     }
 })
 
+// Get product
+router.get("/:productId", async (req,res) => {
+    try{
+        const product = await Product.findById(req.params.productId);
+        res.status(200).json(product);
+    }catch(err){
+        res.status(404).json("Product not found")
+    }
+})
+
 module.exports = router;
