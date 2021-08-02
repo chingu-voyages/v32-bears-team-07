@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "grapesjs/dist/css/grapes.min.css";
 import grapesjs from "grapesjs";
 import { Container } from "react-bootstrap";
 import "./grapesjs.css";
