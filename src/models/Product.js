@@ -34,6 +34,10 @@ const ProductSchema = new mongoose.Schema(
     rating: {
       type: Number,
     },
+    ownerId: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
