@@ -69,4 +69,20 @@ router.delete("/:productId", async (req, res) => {
   }
 });
 
+// Get all products by owner
+router.get("/owner-products/:ownerId", async (req, res) => {
+  try {
+    await User.findById(req.params.ownerId);
+    try {
+      let ownerId = req.params.ownerId;
+      const allProducts = await Product.find({ ownerId });
+      res.status(200).json(allProducts);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } catch (err) {
+    res.status(404).json("User not found");
+  }
+});
+
 module.exports = router;
