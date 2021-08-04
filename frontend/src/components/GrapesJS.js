@@ -207,8 +207,6 @@ const GrapesJS = () => {
       },
     });
 
-    const um = editor.UndoManager;
-
     editor.BlockManager.add("my-block-id", {
       // ...
       content: {
