@@ -1,21 +1,30 @@
 const router = require("express").Router();
 const Product = require("../models/Product");
+const User = require("../models/User");
 
 // Create product
 router.post("/", async (req, res) => {
+  const { name, description, price, stock, digitalProduct, ownerId } = req.body;
+  let newProduct = { name, description, price, stock, digitalProduct, ownerId };
+  for (const [key, value] of Object.entries(newProduct)) {
+    if (value == null) {
+      return res.status(400).json({
+        error: { message: `Missing '${key}' in request body` },
+      });
+    }
+  }
   try {
-    const newProduct = new Product({
-      name: req.body.name,
-      description: req.body.description,
-      price: req.body.price,
-      stock: req.body.stock,
-      digitalProduct: req.body.digitalProduct,
-    });
+    await User.findById(req.body.ownerId);
+    try {
+      newProduct = new Product(newProduct);
 
-    const product = await newProduct.save();
-    res.status(200).json(product);
+      const product = await newProduct.save();
+      res.status(200).json(product);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   } catch (err) {
-    res.status(500).json(err);
+    res.status(404).json("User not found");
   }
 });
 
