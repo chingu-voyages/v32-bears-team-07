@@ -50,33 +50,55 @@ router.patch("/:productId", async (req, res) => {
     }
   }
   try {
-    await User.findById(ownerId);
-    try {
-      const productInfoToUpdate = await Product.findByIdAndUpdate(
-        req.params.productId,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      res.status(200).json(productInfoToUpdate);
-    } catch (err) {
-      res.status(500).json(err);
+    const product = await Product.findById(req.params.productId);
+    if (product.ownerId == ownerId) {
+      try {
+        const productInfoToUpdate = await Product.findByIdAndUpdate(
+          req.params.productId,
+          {
+            $set: req.body,
+          },
+          { new: true }
+        );
+        res.status(200).json(productInfoToUpdate);
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    } else {
+      res.status(401).json("You do not have permission to update this product");
     }
   } catch (err) {
-    res.status(404).json("User not founddfa");
+    res.status(404).json("Product not found");
   }
 });
 
 // Delete product
 router.delete("/:productId", async (req, res) => {
+  const { ownerId } = req.body;
+  let newProduct = { ownerId };
+  for (const [key, value] of Object.entries(newProduct)) {
+    if (value == null) {
+      return res.status(400).json({
+        error: { message: `Missing '${key}' in request body` },
+      });
+    }
+  }
   try {
-    await Product.findById(req.params.productId);
-    try {
-      await Product.findByIdAndDelete(req.params.productId);
-      res.status(200).json("Product deleted");
-    } catch (err) {
-      res.status(404).json(err);
+    const product = await Product.findById(req.params.productId);
+    if (product.ownerId == ownerId) {
+      try {
+        await Product.findById(req.params.productId);
+        try {
+          await Product.findByIdAndDelete(req.params.productId);
+          res.status(200).json("Product deleted");
+        } catch (err) {
+          res.status(500).json(err);
+        }
+      } catch (err) {
+        res.status(404).json("Product not found");
+      }
+    } else {
+      res.status(401).json("You do not have permission to update this product");
     }
   } catch (err) {
     res.status(404).json("Product not found");
