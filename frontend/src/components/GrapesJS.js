@@ -13,7 +13,7 @@ const GrapesJS = () => {
       // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
       fromElement: true,
       // Size of the editor
-      height: "300px",
+      height: "400px",
       width: "auto",
       // Disable the storage manager for the moment
       storageManager: false,
@@ -25,7 +25,7 @@ const GrapesJS = () => {
             el: ".panel__right",
             // Make the panel resizable
             resizable: {
-              maxDim: 350,
+              maxDim: 450,
               minDim: 200,
               tc: 0, // Top handler
               cl: 1, // Left handler
@@ -206,6 +206,8 @@ const GrapesJS = () => {
         title: "Insert button block",
       },
     });
+
+    const um = editor.UndoManager;
 
     editor.BlockManager.add("my-block-id", {
       // ...
