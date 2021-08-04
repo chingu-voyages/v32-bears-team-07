@@ -1,22 +1,50 @@
-import React from "react";
+import { React, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import AuthApiService from '../Api-Service';
 import "./login.css";
 
 const Login = (props) => {
+
+  const [error, setError] = useState('')
+
+  function handleSubmit(event) {
+    event.preventDefault()
+
+    setError('')
+
+    const { username, password } = event.target
+
+    AuthApiService.postLogin({
+      username: username.value,
+      password: password.value,
+    })
+      .then(res => {
+        username.value = ''
+        password.value = ''
+      })
+      .catch(res => {
+        setError('wrong credentials')
+      })
+  }
+
   return (
     <div>
       <Container className="loginContainer">
         <Row md={1.5} lg={2} className="justify-content-center">
           <Col className="text-center">
-            <Form>
+            <div className="errorMessage">
+              {error}
+            </div>
+
+            <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Label>Username</Form.Label>
+                <Form.Control name="username" type="username" placeholder="Enter username" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control name="password" type="password" placeholder="Password" />
               </Form.Group>
               <Button variant="primary" type="submit">
                 Login
@@ -25,7 +53,7 @@ const Login = (props) => {
                 <Button
                   variant="light"
                   size="sm"
-                  type="submit"
+                  type="button"
                   onClick={props.toggleDisplayLogin}
                 >
                   Create New Account
