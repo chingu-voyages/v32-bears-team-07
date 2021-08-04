@@ -10,7 +10,7 @@ const Login = (props) => {
   function handleSubmit(event) {
     event.preventDefault()
 
-    setError('wrong credentials')
+    setError('')
 
     const { username, password } = event.target
 
@@ -21,12 +21,10 @@ const Login = (props) => {
       .then(res => {
         username.value = ''
         password.value = ''
-        // TokenService.saveAuthToken(res.authToken)
-        // this.props.onLoginSuccess()
       })
-    .catch(res => {
-      setError('wrong credentials')
-    })
+      .catch(res => {
+        setError('wrong credentials')
+      })
   }
 
   return (
@@ -37,7 +35,7 @@ const Login = (props) => {
             <div className="errorMessage">
               {error}
             </div>
-              
+
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
