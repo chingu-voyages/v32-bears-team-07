@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const authenticationRoute = require("./src/routes/authentication");
 const userFunctionsRoute = require("./src/routes/userFunctions");
-const productRoutes = require ("./src/routes/productRoutes")
+const productRoutes = require("./src/routes/productRoutes");
 
 dotenv.config();
 app.use(express.json());
@@ -29,7 +29,7 @@ mongoose
 
 app.use("/api/auth", authenticationRoute);
 app.use("/api/userFunctions", userFunctionsRoute);
-app.use("/api/productRoutes", productRoutes)
+app.use("/api/productRoutes", productRoutes);
 
 app.listen("5000", () => {
   console.log("Backend is running.");

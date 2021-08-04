@@ -40,17 +40,31 @@ router.get("/:productId", async (req, res) => {
 
 // Update Product
 router.patch("/:productId", async (req, res) => {
+  const { ownerId } = req.body;
+  let newProduct = { ownerId };
+  for (const [key, value] of Object.entries(newProduct)) {
+    if (value == null) {
+      return res.status(400).json({
+        error: { message: `Missing '${key}' in request body` },
+      });
+    }
+  }
   try {
-    const productInfoToUpdate = await Product.findByIdAndUpdate(
-      req.params.productId,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    res.status(200).json(productInfoToUpdate);
+    await User.findById(ownerId);
+    try {
+      const productInfoToUpdate = await Product.findByIdAndUpdate(
+        req.params.productId,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.status(200).json(productInfoToUpdate);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   } catch (err) {
-    res.status(500).json(err);
+    res.status(404).json("User not founddfa");
   }
 });
 
