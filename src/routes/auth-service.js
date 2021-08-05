@@ -1,9 +1,10 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/
 const emailValidator = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-const AuthenticationService = {
+const AuthService = {
 
     validatePassword(username, email, password) {
         if (password.length < 8) {
@@ -29,6 +30,12 @@ const AuthenticationService = {
     hashPassword(password) {
         return bcrypt.hash(password, 12)
     },
+    createJwt(subject, payload) {
+        return jwt.sign(payload, process.env.JWT_SECRET, {
+            subject,
+            algorithm: 'HS256',
+        })
+    },
 }
 
-module.exports = AuthenticationService
+module.exports = AuthService
