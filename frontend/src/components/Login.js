@@ -1,11 +1,19 @@
 import { React, useState } from "react";
+import { useHistory, Link } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import AuthApiService from '../Api-Service';
+import TokenService from '../token-service';
 import "./login.css";
 
 const Login = (props) => {
 
   const [error, setError] = useState('')
+  // const history = useHistory();
+
+  // const routeChange = () => {
+  //   let path = '/landing-page';
+  //   history.push(path);
+  // }
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -21,9 +29,14 @@ const Login = (props) => {
       .then(res => {
         username.value = ''
         password.value = ''
+        TokenService.saveAuthToken(res.authToken)
+
+        console.log(res.authToken)
       })
+
       .catch(res => {
-        setError('wrong credentials')
+        setError(res)
+        console.log(res)
       })
   }
 
@@ -50,14 +63,17 @@ const Login = (props) => {
                 Login
               </Button>
               <Col className="mt-4">
-                <Button
-                  variant="light"
-                  size="sm"
-                  type="button"
-                  onClick={props.toggleDisplayLogin}
-                >
-                  Create New Account
-                </Button>
+
+                <Link to='/register'>
+                  <Button
+                    variant="light"
+                    size="sm"
+                    type="button"
+                  >
+                    Create New Account
+                  </Button>
+                </Link>
+
               </Col>
             </Form>
           </Col>
