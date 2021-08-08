@@ -23,9 +23,11 @@ router.post("/register", async (req, res) => {
       password: hashedPass
     });
 
+    // checks for duplicate username
     const usernameCheck = await User.findOne({ username: req.body.username });
     if (usernameCheck) return res.status(400).json("username already registered");
 
+    // checks for duplicate email
     const emailCheck = await User.findOne({ email: req.body.email });
     if (emailCheck) return res.status(400).json("email already registered");
 
