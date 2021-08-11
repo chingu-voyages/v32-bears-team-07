@@ -12,12 +12,11 @@ dotenv.config();
 app.use(express.json());
 
 app.use(helmet())
-// app.use(
-//   cors({
-//     origin: "*",
-//   })
-// );
-app.use(cors())
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 mongoose
   .connect(process.env.MONGODB_URI, {
