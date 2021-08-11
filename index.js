@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const helmet = require('helmet');
 const authenticationRoute = require("./src/routes/authentication");
 const userFunctionsRoute = require("./src/routes/userFunctions");
 const productRoutes = require("./src/routes/productRoutes");
@@ -10,6 +11,7 @@ const productRoutes = require("./src/routes/productRoutes");
 dotenv.config();
 app.use(express.json());
 
+app.use(helmet())
 app.use(
   cors({
     origin: "*",
