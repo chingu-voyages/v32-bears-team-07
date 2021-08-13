@@ -14,7 +14,9 @@ app.use(express.json());
 app.use(helmet())
 app.use(
   cors({
-    origin: false,
+    origin: "*",
+    methods: ["GET", "POST", "DELETE"],
+    allowedHeaders: ["content-type"],
   })
 );
 
