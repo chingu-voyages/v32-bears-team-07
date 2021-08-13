@@ -66,14 +66,14 @@ router.post("/login", async (req, res) => {
     const validated = await bcrypt.compare(req.body.password, user.password);
     if (!validated) return res.status(401).json("Wrong credentials!");
 
-    // const { password, paymentInfo, ...info } = user._doc;
-    // res.status(200).json(info);
+    const { password, paymentInfo, ...info } = user._doc;
+    res.status(200).json(info);
 
-    const sub = username
-    const payload = { user_id: User._id }
-    res.send({
-      authToken: AuthService.createJwt(sub, payload),
-    })
+    // const sub = username
+    // const payload = { user_id: User._id }
+    // res.send({
+    //   authToken: AuthService.createJwt(sub, payload),
+    // })
 
   } catch (err) {
     res.status(401).json(err);
