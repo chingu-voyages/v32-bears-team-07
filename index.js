@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const morgan = require('morgan')
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -11,10 +12,13 @@ const productRoutes = require("./src/routes/productRoutes");
 dotenv.config();
 app.use(express.json());
 
+const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
+app.use(morgan(morganSetting))
+
 app.use(helmet())
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: '*',
   })
 );
 
