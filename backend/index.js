@@ -3,20 +3,23 @@ const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const helmet = require('helmet');
 const authenticationRoute = require("./src/routes/authentication");
 const userFunctionsRoute = require("./src/routes/userFunctions");
+const productRoutes = require("./src/routes/productRoutes");
 
 dotenv.config();
 app.use(express.json());
 
+app.use(helmet())
 app.use(
   cors({
-    origin: "*",
+    origin: '*',
   })
 );
 
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -28,6 +31,7 @@ mongoose
 
 app.use("/api/auth", authenticationRoute);
 app.use("/api/userFunctions", userFunctionsRoute);
+app.use("/api/productRoutes", productRoutes);
 
 app.listen("5000", () => {
   console.log("Backend is running.");
