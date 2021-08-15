@@ -20,10 +20,6 @@ app.use(
   })
 );
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../frontend/build'));
-}
-
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -38,6 +34,10 @@ mongoose
 app.use("/api/auth", authenticationRoute);
 app.use("/api/userFunctions", userFunctionsRoute);
 app.use("/api/productRoutes", productRoutes);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('../frontend/build'));
+}
 
 app.listen(PORT, () => {
   console.log("Backend is running.");
