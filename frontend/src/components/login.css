@@ -1,3 +1,9 @@
 .loginContainer {
   margin-top: 20vh;
 }
+
+.errorMessage{
+  color: red;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
