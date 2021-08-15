@@ -18,8 +18,14 @@
     "test": "test"
   },
   "scripts": {
-    "start": "nodemon index.js",
+    "build": "cd ../frontend && npm run build",
+    "install-client": "cd ../frontend && npm install",
+    "heroku-postbuild": "npm run install-client &npm run build",
+    "start": "node index.js",
     "test": "mocha"
+  },
+  "engines": {
+    "node": "16.5.0"
   },
   "author": "",
   "license": "ISC",

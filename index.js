@@ -11,6 +11,8 @@ const productRoutes = require("./src/routes/productRoutes");
 dotenv.config();
 app.use(express.json());
 
+const PORT = process.env.PORT || 5000
+
 app.use(helmet())
 app.use(
   cors({
@@ -33,6 +35,10 @@ app.use("/api/auth", authenticationRoute);
 app.use("/api/userFunctions", userFunctionsRoute);
 app.use("/api/productRoutes", productRoutes);
 
-app.listen("5000", () => {
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('../frontend/build'));
+}
+
+app.listen(PORT, () => {
   console.log("Backend is running.");
 });
