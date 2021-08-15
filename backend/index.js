@@ -35,8 +35,20 @@ app.use("/api/auth", authenticationRoute);
 app.use("/api/userFunctions", userFunctionsRoute);
 app.use("/api/productRoutes", productRoutes);
 
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('../frontend/build'));
+// }
+
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../frontend/build'));
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  )
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running....')
+  })
 }
 
 app.listen(PORT, () => {
