@@ -18,10 +18,6 @@
     "test": "test"
   },
   "scripts": {
-<<<<<<< HEAD:backend/package.json
-    "start": "nodemon index.js",
-    "test": "mocha"
-=======
     "build": "cd ../frontend && npm run build",
     "install-client": "cd ../frontend && npm install",
     "heroku-postbuild": "npm run install-client &npm run build",
@@ -30,7 +26,6 @@
   },
   "engines": {
     "node": "16.5.0"
->>>>>>> backend:package.json
   },
   "author": "",
   "license": "ISC",

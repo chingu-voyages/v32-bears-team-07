@@ -11,11 +11,8 @@ const productRoutes = require("./src/routes/productRoutes");
 dotenv.config();
 app.use(express.json());
 
-<<<<<<< HEAD:backend/index.js
-=======
 const PORT = process.env.PORT || 5000
 
->>>>>>> backend:index.js
 app.use(helmet())
 app.use(
   cors({
@@ -37,13 +34,10 @@ mongoose
 app.use("/api/auth", authenticationRoute);
 app.use("/api/userFunctions", userFunctionsRoute);
 app.use("/api/productRoutes", productRoutes);
-<<<<<<< HEAD:backend/index.js
-=======
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('../frontend/build'));
 }
->>>>>>> backend:index.js
 
 app.listen(PORT, () => {
   console.log("Backend is running.");
