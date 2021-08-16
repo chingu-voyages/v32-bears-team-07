@@ -17,12 +17,10 @@ const PORT = process.env.PORT || 5000
 // app.use(helmet())
 // app.use(cors());
 
-// const connect = '127.0.0.1:3030'
-
 //process.env.MONGODB_URI
 
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect(process.env.SOCKS5_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
