@@ -16,6 +16,7 @@
   "directories": {
     "test": "test"
   },
+  "homepage": "https://salty-oasis-94975.herokuapp.com/",
   "scripts": {
     "start": "node backend/index.js",
     "build": "cd frontend && npm run build",
