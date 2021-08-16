@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 5000
 //process.env.MONGODB_URI
 
 mongoose
-  .connect(process.env.SOCKS5_URL, {
+  .connect(process.env.QUOTAGUARDSTATIC_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
