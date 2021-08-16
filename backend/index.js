@@ -4,7 +4,7 @@ const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 // const cors = require("cors");
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const authenticationRoute = require("./src/routes/authentication");
 const userFunctionsRoute = require("./src/routes/userFunctions");
 const productRoutes = require("./src/routes/productRoutes");
@@ -14,7 +14,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000
 
-app.use(helmet())
+// app.use(helmet())
 // app.use(
 //   cors({
 //     origin: '*',
