@@ -4,7 +4,7 @@ const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const helmet = require('helmet');
+const helmet = require("helmet");
 const authenticationRoute = require("./src/routes/authentication");
 const userFunctionsRoute = require("./src/routes/userFunctions");
 const productRoutes = require("./src/routes/productRoutes");
@@ -12,9 +12,9 @@ const productRoutes = require("./src/routes/productRoutes");
 dotenv.config();
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
 
-app.use(helmet())
+app.use(helmet());
 app.use(cors());
 
 //process.env.MONGODB_URI
@@ -33,6 +33,7 @@ mongoose
 app.use("/api/auth", authenticationRoute);
 app.use("/api/userFunctions", userFunctionsRoute);
 app.use("/api/productRoutes", productRoutes);
+app.use("/api/grapeJsRoutes", grapeJsRoutes);
 
 // if (process.env.NODE_ENV === 'production') {
 //   app.use(express.static('../frontend/build'));
@@ -40,16 +41,16 @@ app.use("/api/productRoutes", productRoutes);
 
 const folderName = path.resolve();
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(folderName, '../frontend/build')))
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(folderName, "../frontend/build")));
 
-  app.get('*', (req, res) =>
-    res.sendFile(path.resolve(folderName, 'frontend', 'build', 'index.html'))
-  )
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(folderName, "frontend", "build", "index.html"))
+  );
 } else {
-  app.get('/', (req, res) => {
-    res.send('API is running....')
-  })
+  app.get("/", (req, res) => {
+    res.send("API is running....");
+  });
 }
 
 app.listen(PORT, () => {
