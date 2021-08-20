@@ -20,9 +20,7 @@
   "homepage": "https://salty-oasis-94975.herokuapp.com/",
   "scripts": {
     "start": "node backend/index.js",
-    "build": "cd frontend && npm run build",
-    "install-client": "cd frontend && npm install",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend",
+    "deploy": "git push heroku main",
     "test": "mocha"
   },
   "engines": {

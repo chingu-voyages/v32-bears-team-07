@@ -8,6 +8,7 @@ const helmet = require("helmet");
 const authenticationRoute = require("./src/routes/authentication");
 const userFunctionsRoute = require("./src/routes/userFunctions");
 const productRoutes = require("./src/routes/productRoutes");
+const grapeJsRoutes = require("./src/routes/grapeJsRoutes");
 
 dotenv.config();
 app.use(express.json());
