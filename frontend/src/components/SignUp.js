@@ -1,13 +1,13 @@
-import { React, useState } from "react";
+import React, {useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import AuthApiService from '../Api-Service';
 import TokenService from '../token-service';
 import "./signup.css";
 
-const SignUp = () => {
+const SignUp = (props) => {
 
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
   // const history = useHistory();
 
   // const routeChange = () => {
@@ -37,8 +37,8 @@ const SignUp = () => {
         password.value = ''
         passwordConfirm.value = ''
         TokenService.saveAuthToken(user.authToken)
-        
         console.log(user.authToken)
+        props.history.push("/dashboard");
       })
       .catch(res => {
         setError(res)

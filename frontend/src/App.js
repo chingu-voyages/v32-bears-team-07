@@ -5,7 +5,11 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import GrapesJS from "./components/GrapesJS";
+// import GrapesJS from "./components/GrapesJS";
+import LandingPage from "./components/LandingPage";
+import UserDashboard from "./components/UserDashboard";
+import PrivateRoute from './components/Utils/PrivateRoute';
+import PublicRoute from './components/Utils/PublicRoute';
 
 const App = () => {
   // const [displayLogin, setDisplayLogin] = useState(true);
@@ -18,11 +22,12 @@ const App = () => {
     <div>
       <Header />
       <main className="py-3">
-        <Container>
+
+        {/* <Container>
           <h1>Welcome to popup shop</h1>
 
           <GrapesJS />
-        </Container>
+        </Container> */}
 
         {/* {displayLogin ? (
           <Login toggleDisplayLogin={toggleDisplayLogin} />
@@ -30,9 +35,14 @@ const App = () => {
           <SignUp />
         )} */}
 
+
+
+
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={SignUp} />
+          <PublicRoute exact path="/" component={LandingPage} />
+          <PublicRoute exact path="/login" component={Login} />
+          <PublicRoute exact path="/register" component={SignUp} />
+          <PrivateRoute exact path="/dashboard" component={UserDashboard} />
         </Switch>
       </main>
 

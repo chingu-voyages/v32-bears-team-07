@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import AuthApiService from '../Api-Service';
 import TokenService from '../token-service';
@@ -8,20 +8,11 @@ import "./login.css";
 const Login = (props) => {
 
   const [error, setError] = useState('')
-  // const history = useHistory();
-
-  // const routeChange = () => {
-  //   let path = '/landing-page';
-  //   history.push(path);
-  // }
 
   function handleSubmit(event) {
     event.preventDefault()
-
     setError('')
-
     const { username, password } = event.target
-
     AuthApiService.postLogin({
       username: username.value,
       password: password.value,
@@ -30,8 +21,8 @@ const Login = (props) => {
         username.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
-
         console.log(res.authToken)
+        props.history.push("/dashboard");
       })
 
       .catch(res => {
