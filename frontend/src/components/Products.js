@@ -4,6 +4,9 @@ import Product from "./Product";
 import "./Products.css";
 
 export default function Products(props) {
+  const addToCart = () => {
+    console.log("add to cart");
+  };
   return (
     <div>
       <Container>
@@ -16,6 +19,7 @@ export default function Products(props) {
                   img={item.img}
                   title={item.title}
                   price={item.price}
+                  addToCart={addToCart}
                 />
               );
             })}
