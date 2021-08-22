@@ -9,6 +9,7 @@ const authenticationRoute = require("./src/routes/authentication");
 const userFunctionsRoute = require("./src/routes/userFunctions");
 const productRoutes = require("./src/routes/productRoutes");
 const grapeJsRoutes = require("./src/routes/grapeJsRoutes");
+const stripeRoutes = require("./src/routes/stripeRoutes");
 
 dotenv.config();
 app.use(express.json());
@@ -35,6 +36,7 @@ app.use("/api/auth", authenticationRoute);
 app.use("/api/userFunctions", userFunctionsRoute);
 app.use("/api/productRoutes", productRoutes);
 app.use("/api/grapeJsRoutes", grapeJsRoutes);
+app.use("/api/payment", stripeRoutes);
 
 // if (process.env.NODE_ENV === 'production') {
 //   app.use(express.static('../frontend/build'));
@@ -55,5 +57,5 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.listen(PORT, () => {
-  console.log("Backend is running.");
+  console.log(`Backend is running on ${PORT}`);
 });
