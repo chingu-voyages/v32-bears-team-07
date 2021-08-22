@@ -18,6 +18,13 @@ const PORT = process.env.PORT || 5000;
 
 app.use(helmet());
 app.use(cors());
+app.use(
+  session({
+    secret: process.env.Session_Secret,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 //process.env.MONGODB_URI
 
