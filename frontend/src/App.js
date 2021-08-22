@@ -8,8 +8,9 @@ import SignUp from "./components/SignUp";
 // import GrapesJS from "./components/GrapesJS";
 import LandingPage from "./components/LandingPage";
 import UserDashboard from "./components/UserDashboard";
-import PrivateRoute from './components/Utils/PrivateRoute';
-import PublicRoute from './components/Utils/PublicRoute';
+import PrivateRoute from "./components/Utils/PrivateRoute";
+import PublicRoute from "./components/Utils/PublicRoute";
+import SinglePartyStripe from "./components/singlePartyStripe";
 
 const App = () => {
   // const [displayLogin, setDisplayLogin] = useState(true);
@@ -22,7 +23,6 @@ const App = () => {
     <div>
       <Header />
       <main className="py-3">
-
         {/* <Container>
           <h1>Welcome to popup shop</h1>
 
@@ -35,13 +35,15 @@ const App = () => {
           <SignUp />
         )} */}
 
-
-
-
         <Switch>
           <PublicRoute exact path="/" component={LandingPage} />
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/register" component={SignUp} />
+          <PublicRoute
+            exact
+            path="/single-party-stripe"
+            component={SinglePartyStripe}
+          />
           <PrivateRoute exact path="/dashboard" component={UserDashboard} />
         </Switch>
       </main>
