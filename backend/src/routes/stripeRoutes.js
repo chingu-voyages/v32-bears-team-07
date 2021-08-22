@@ -6,8 +6,6 @@ const { v4: uuidv4 } = require("uuid");
 
 router.post("/", (req, res) => {
   const { product, token } = req.body;
-  console.log("Product", product);
-  console.log("Price", product.price);
   // Created to ensure that the customer is only charged once
   const idempotencyKey = uuidv4();
 
