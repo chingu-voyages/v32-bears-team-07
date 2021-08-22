@@ -40,6 +40,11 @@ const Header = () => {
                 <i class="fa fa-usd" aria-hidden="true"></i> Single Party Stripe
                 Integration{" "}
               </Nav.Link>
+
+              <Nav.Link href="/multi-party-stripe">
+                <i class="fa fa-usd" aria-hidden="true"></i> Multi Party Stripe
+                Integration{" "}
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -11,6 +11,7 @@ import UserDashboard from "./components/UserDashboard";
 import PrivateRoute from "./components/Utils/PrivateRoute";
 import PublicRoute from "./components/Utils/PublicRoute";
 import SinglePartyStripe from "./components/singlePartyStripe";
+import MultipartyStripe from "./components/multi-party-stripe/multi-party-stripe";
 
 const App = () => {
   // const [displayLogin, setDisplayLogin] = useState(true);
@@ -43,6 +44,11 @@ const App = () => {
             exact
             path="/single-party-stripe"
             component={SinglePartyStripe}
+          />
+          <PublicRoute
+            exact
+            path="/multi-party-stripe"
+            component={MultipartyStripe}
           />
           <PrivateRoute exact path="/dashboard" component={UserDashboard} />
         </Switch>
