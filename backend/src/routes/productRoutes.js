@@ -5,7 +5,7 @@ const User = require("../models/User");
 // Create product
 router.post("/", async (req, res) => {
   const { name, img, description, company, price, stock, digitalProduct, rating, ownerId } = req.body;
-  let newProduct = { name, img, description, price, stock, digitalProduct, rating, ownerId };
+  let newProduct = { name, img, description, company, price, stock, digitalProduct, rating, ownerId };
   for (const [key, value] of Object.entries(newProduct)) {
     if (value == null) {
       return res.status(400).json({
