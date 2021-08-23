@@ -8,6 +8,8 @@ import SignUp from "./components/SignUp";
 // import GrapesJS from "./components/GrapesJS";
 import LandingPage from "./components/LandingPage";
 import UserDashboard from "./components/UserDashboard";
+import Products from "./components/Products";
+import Product from "./components/Product";
 import PrivateRoute from './components/Utils/PrivateRoute';
 import PublicRoute from './components/Utils/PublicRoute';
 
@@ -42,7 +44,8 @@ const App = () => {
           <PublicRoute exact path="/" component={LandingPage} />
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/register" component={SignUp} />
-          <PrivateRoute exact path="/dashboard" component={UserDashboard} />
+          <PublicRoute exact path="/products" component={Products} />
+          <PublicRoute exact path="/product" component={Product} />
         </Switch>
       </main>
 

@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import Product from "./Product";
+import AuthApiService from '../Api-Service';
 import "./Products.css";
 
 export default function Products(props) {
-  const addToCart = (props) => {
-    console.log("add to cart");
-    console.log(`Product ID: ${props.target.id}`);
-  };
+
+  const [products, setProducts] = useState('')
+
+  //fetches all products
+  useEffect(() => {
+    AuthApiService.getProducts()
+      .then(res => {
+        setProducts(res)
+        console.log(res)
+      })
+  })
+
   return (
     <div>
       <Container>
-        {props.products ? (
+        {products ? (
           <div className="productsDiv">
-            {props.products.map((item) => {
+            {products.map((item) => {
               return (
                 <Product
                   key={item.id}
@@ -21,7 +30,6 @@ export default function Products(props) {
                   img={item.img}
                   title={item.title}
                   price={item.price}
-                  addToCart={addToCart}
                 />
               );
             })}
@@ -30,4 +38,32 @@ export default function Products(props) {
       </Container>
     </div>
   );
+
+  // const addToCart = (props) => {
+  //   console.log("add to cart");
+  //   console.log(`Product ID: ${props.target.id}`);
+  // };
+
+  // return (
+  //   <div>
+  //     <Container>
+  //       {props.products ? (
+  //         <div className="productsDiv">
+  //           {props.products.map((item) => {
+  //             return (
+  //               <Product
+  //                 key={item.id}
+  //                 id={item.id}
+  //                 img={item.img}
+  //                 title={item.title}
+  //                 price={item.price}
+  //                 addToCart={addToCart}
+  //               />
+  //             );
+  //           })}
+  //         </div>
+  //       ) : null}
+  //     </Container>
+  //   </div>
+  // );
 }

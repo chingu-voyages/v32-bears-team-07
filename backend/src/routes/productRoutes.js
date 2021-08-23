@@ -121,6 +121,7 @@ router.get("/owner-products/:ownerId", async (req, res) => {
   }
 });
 
+// Get all products
 router.get("/", async (req, res) => {
   try {
     const allProducts = await Product.find({});
