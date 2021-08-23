@@ -4,8 +4,9 @@ import Product from "./Product";
 import "./Products.css";
 
 export default function Products(props) {
-  const addToCart = () => {
+  const addToCart = (props) => {
     console.log("add to cart");
+    console.log(`Product ID: ${props.target.id}`);
   };
   return (
     <div>
@@ -16,6 +17,7 @@ export default function Products(props) {
               return (
                 <Product
                   key={item.id}
+                  id={item.id}
                   img={item.img}
                   title={item.title}
                   price={item.price}
