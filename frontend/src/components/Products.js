@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import Product from "./Product";
-import AuthApiService from '../Api-Service';
+import AuthApiService from "../Api-Service";
 import "./Products.css";
 
 export default function Products(props) {
-
-  const [products, setProducts] = useState('')
+  const [products, setProducts] = useState("");
 
   //fetches all products
   useEffect(() => {
-    AuthApiService.getProducts()
-      .then(res => {
-        setProducts(res)
-        console.log(res)
-      })
-  })
+    AuthApiService.getProducts().then((res) => {
+      setProducts(res);
+      console.log(res);
+    });
+  });
 
   return (
     <div>
@@ -25,10 +23,10 @@ export default function Products(props) {
             {products.map((item) => {
               return (
                 <Product
-                  key={item.id}
-                  id={item.id}
+                  key={item.ownerId}
+                  id={item.ownerId}
                   img={item.img}
-                  title={item.title}
+                  title={item.name}
                   price={item.price}
                 />
               );
