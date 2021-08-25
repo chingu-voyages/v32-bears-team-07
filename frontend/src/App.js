@@ -45,7 +45,6 @@ const App = () => {
           <PublicRoute exact path="/register" component={SignUp} />
           <PublicRoute exact path="/product" component={Product} />
           {/* Both below should be private, change later */}
-          <PublicRoute exact path="/checkout-form" component={CheckoutForm} />
           <PublicRoute exact path="/cart" component={Cart} />
           <PublicRoute exact path="/checkout" component={Checkout} />
         </Switch>
