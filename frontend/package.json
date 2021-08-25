@@ -24,6 +24,7 @@
     "eject": "react-scripts eject",
     "deploy": "vercel --prod --build-env CI=false"
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": [
       "react-app",
