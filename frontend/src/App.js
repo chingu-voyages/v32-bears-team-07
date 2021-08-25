@@ -10,8 +10,9 @@ import LandingPage from "./components/LandingPage";
 import UserDashboard from "./components/UserDashboard";
 import Products from "./components/Products";
 import Product from "./components/Product";
-import PrivateRoute from './components/Utils/PrivateRoute';
-import PublicRoute from './components/Utils/PublicRoute';
+import PrivateRoute from "./components/Utils/PrivateRoute";
+import PublicRoute from "./components/Utils/PublicRoute";
+import CheckoutForm from "./components/CheckoutForm";
 
 const App = () => {
   // const [displayLogin, setDisplayLogin] = useState(true);
@@ -24,7 +25,6 @@ const App = () => {
     <div>
       <Header />
       <main className="py-3">
-
         {/* <Container>
           <h1>Welcome to popup shop</h1>
 
@@ -37,14 +37,12 @@ const App = () => {
           <SignUp />
         )} */}
 
-
-
-
         <Switch>
           <PublicRoute exact path="/" component={Products} />
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/register" component={SignUp} />
           <PublicRoute exact path="/product" component={Product} />
+          <PublicRoute exact path="/checkout" component={CheckoutForm} />
         </Switch>
       </main>
 
