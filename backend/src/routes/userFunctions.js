@@ -1,8 +1,11 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const requireAuth = require('../middleware/jwt-auth');
 
-// Edit UserInfo
+
+
+// // Edit UserInfo
 router.patch("/:userId", async (req, res) => {
   if (req.body._id === req.params.userId) {
     // if a user wants to update the password the first thing done is hash the password

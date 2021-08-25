@@ -28,6 +28,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+
 // Get product
 router.get("/:productId", async (req, res) => {
   try {

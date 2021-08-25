@@ -9,6 +9,7 @@ const authenticationRoute = require("./src/routes/authentication");
 const userFunctionsRoute = require("./src/routes/userFunctions");
 const productRoutes = require("./src/routes/productRoutes");
 const grapeJsRoutes = require("./src/routes/grapeJsRoutes");
+const cartRoutes = require("./src/routes/cartRoutes");
 
 dotenv.config();
 app.use(express.json());
@@ -35,6 +36,7 @@ app.use("/api/auth", authenticationRoute);
 app.use("/api/userFunctions", userFunctionsRoute);
 app.use("/api/productRoutes", productRoutes);
 app.use("/api/grapeJsRoutes", grapeJsRoutes);
+app.use("/api/cartRoutes", cartRoutes);
 
 // if (process.env.NODE_ENV === 'production') {
 //   app.use(express.static('../frontend/build'));
