@@ -14,6 +14,7 @@ import Product from "./components/Product";
 import PublicRoute from "./components/Utils/PublicRoute";
 import CheckoutForm from "./components/CheckoutForm";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 
 const App = () => {
   // const [displayLogin, setDisplayLogin] = useState(true);
@@ -44,8 +45,9 @@ const App = () => {
           <PublicRoute exact path="/register" component={SignUp} />
           <PublicRoute exact path="/product" component={Product} />
           {/* Both below should be private, change later */}
-          <PublicRoute exact path="/checkout" component={CheckoutForm} />
+          <PublicRoute exact path="/checkout-form" component={CheckoutForm} />
           <PublicRoute exact path="/cart" component={Cart} />
+          <PublicRoute exact path="/checkout" component={Checkout} />
         </Switch>
       </main>
 
