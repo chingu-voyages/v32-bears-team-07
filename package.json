@@ -24,7 +24,8 @@
     "seed": "node backend/seed.js",
     "start": "node backend/index.js",
     "deploy": "git push heroku main",
-    "test": "mocha"
+    "test": "mocha",
+    "start:dev": "nodemon backend/index.js"
   },
   "engines": {
     "node": "16.5.0"

@@ -7,7 +7,7 @@ const calculateOrderAmount = (items) => {
   // Actually calculate the total
   // Temp returning the price of $10
   // Everything is in cent
-  return 1000;
+  return 1500;
 };
 
 router.post("/create-payment-intent", async (req, res) => {
