@@ -15,6 +15,7 @@ import PublicRoute from "./components/Utils/PublicRoute";
 import CheckoutForm from "./components/CheckoutForm";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
+import ThankYou from "./components/ThankYou";
 
 const App = () => {
   // const [displayLogin, setDisplayLogin] = useState(true);
@@ -47,6 +48,7 @@ const App = () => {
           {/* Both below should be private, change later */}
           <PublicRoute exact path="/cart" component={Cart} />
           <PublicRoute exact path="/checkout" component={Checkout} />
+          <PublicRoute exact path="/thank-you" component={ThankYou} />
         </Switch>
       </main>
 
