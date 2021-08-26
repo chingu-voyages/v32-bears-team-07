@@ -27,3 +27,13 @@ router.post("/", async (req, res) => {
     res.status(404).json("User not found");
   }
 });
+
+// Get order by id
+router.get("/:orderId", async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.orderId);
+    res.status(200).json(order);
+  } catch (err) {
+    res.status(404).json("Order not found");
+  }
+});
