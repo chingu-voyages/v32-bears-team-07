@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const User = require("../models/User");
 
 const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/
 const emailValidator = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -36,10 +37,8 @@ const AuthService = {
             algorithm: 'HS256',
         })
     },
-    getUserWithUserName(db, username) {
-        return db('recipro_users')
-            .where({ username })
-            .first()
+    getUserWithUserName(username) {
+        return User.findOne({ username })
     },
     verifyJwt(token) {
         return jwt.verify(token, process.env.JWT_SECRET, {

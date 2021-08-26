@@ -3,8 +3,13 @@ import { Container } from "react-bootstrap";
 import Product from "./Product";
 import AuthApiService from "../Api-Service";
 
-function Cart() {
+export default function Cart() {
     const [cartProducts, setCartProducts] = useState('');
 
+    return (
+        <div>
+            cart...
+        </div>
+    )
     
 }

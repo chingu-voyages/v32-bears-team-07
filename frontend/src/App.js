@@ -10,6 +10,7 @@ import LandingPage from "./components/LandingPage";
 import UserDashboard from "./components/UserDashboard";
 import Products from "./components/Products";
 import Product from "./components/Product";
+import Cart from "./components/Cart";
 import PrivateRoute from './components/Utils/PrivateRoute';
 import PublicRoute from './components/Utils/PublicRoute';
 
@@ -45,6 +46,7 @@ const App = () => {
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/register" component={SignUp} />
           <PublicRoute exact path="/product" component={Product} />
+          <PublicRoute exact path="/cart" component={Cart} />
         </Switch>
       </main>
 

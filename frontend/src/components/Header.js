@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import TokenService from '../token-service';
+import './Header.css';
 
 const Header = () => {
 
@@ -24,6 +25,8 @@ const Header = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
                             <Nav.Link href="/"><i className='fas fa-home'></i> Home</Nav.Link>
+
+                            <Nav.Link href="/cart"><i className='fas fa-shopping-cart'></i> Cart</Nav.Link>
 
                             {loggedIn ? (
                                 <Nav.Link href="/login" onClick={handleLogoutClick}><i className='fas fa-user'></i> Log Out </Nav.Link>

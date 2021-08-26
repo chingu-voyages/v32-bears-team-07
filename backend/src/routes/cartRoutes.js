@@ -2,20 +2,17 @@ const router = require("express").Router();
 const Product = require("../models/Product");
 const User = require("../models/User");
 const Cart = require("../models/Cart");
+const requireAuth = require('../middleware/jwt-auth');
 
 // Get all cart products by customer
-router.get("/:customerId", async (req, res) => {
+router.get("/", requireAuth, async (req, res) => {
     try {
-        await User.findById(req.params.customerId);
-        try {
-            let customerId = req.params.customerId;
-            const allProducts = await Cart.find({ customerId });
-            res.status(200).json(allProducts);
-        } catch (err) {
-            res.status(500).json(err);
-        }
-    } catch (err) {
-        res.status(404).json("User not found");
+        let customerId = req.params._id;
+        const allCartProducts = await Cart.find({ customerId });
+        res.status(200).json(allCartProducts);
+    }
+    catch (err) {
+        res.status(500).json(err);
     }
 });
 
