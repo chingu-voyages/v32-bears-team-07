@@ -37,7 +37,7 @@ const AuthService = {
       algorithm: "HS256",
     });
   },
-  getUserWithUserName(id) {
+  getUserById(id) {
     return User.findById(id);
   },
   verifyJwt(token) {
