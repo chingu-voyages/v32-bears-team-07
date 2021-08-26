@@ -38,7 +38,8 @@ router.post("/register", async (req, res) => {
 
     const user = await newUser.save();
 
-    const sub = username;
+    const { _id } = user._doc;
+    const sub = `${_id}`;
     const payload = { user_id: User._id };
     res.send({
       authToken: AuthService.createJwt(sub, payload),
@@ -52,21 +53,22 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const username = req.body.username;
-    // const password = req.body.password;
+    const password = req.body.password;
 
     for (const field of ["username", "password"])
       if (!req.body[field]) return res.status(400).json(`missing ${field}`);
 
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ username });
     if (!user) return res.status(401).json("Wrong credentials!");
 
-    const validated = await bcrypt.compare(req.body.password, user.password);
+    const validated = await bcrypt.compare(password, user.password);
     if (!validated) return res.status(401).json("Wrong credentials!");
 
-    // const { password, paymentInfo, ...info } = user._doc;
-    // res.status(200).json(info);
-
-    const sub = User._id;
+    // Destructuring the _id field from the user._doc object
+    const { _id } = user._doc;
+    // Casting _id as a string so that it can be passed into .createJwt to have JWT sign it
+    // JWT only accepts type string I think and when we get _id from destructuring it is not of type string
+    const sub = `${_id}`;
     const payload = { user_id: User._id };
     res.send({
       authToken: AuthService.createJwt(sub, payload),
