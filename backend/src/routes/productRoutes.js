@@ -4,8 +4,28 @@ const User = require("../models/User");
 
 // Create product
 router.post("/", async (req, res) => {
-  const { name, img, description, company, price, stock, digitalProduct, rating, ownerId } = req.body;
-  let newProduct = { name, img, description, company, price, stock, digitalProduct, rating, ownerId };
+  const {
+    name,
+    img,
+    description,
+    company,
+    price,
+    stock,
+    digitalProduct,
+    rating,
+    ownerId,
+  } = req.body;
+  let newProduct = {
+    name,
+    img,
+    description,
+    company,
+    price,
+    stock,
+    digitalProduct,
+    rating,
+    ownerId,
+  };
   for (const [key, value] of Object.entries(newProduct)) {
     if (value == null) {
       return res.status(400).json({
@@ -27,7 +47,6 @@ router.post("/", async (req, res) => {
     res.status(404).json("User not found");
   }
 });
-
 
 // Get product
 router.get("/:productId", async (req, res) => {
@@ -99,7 +118,7 @@ router.delete("/:productId", async (req, res) => {
         res.status(404).json("Product not found");
       }
     } else {
-      res.status(401).json("You do not have permission to update this product");
+      res.status(401).json("You do not have permission to delete this product");
     }
   } catch (err) {
     res.status(404).json("Product not found");
@@ -126,11 +145,10 @@ router.get("/owner-products/:ownerId", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const allProducts = await Product.find({});
-      res.status(200).json(allProducts);
-  }
-  catch (err) {
+    res.status(200).json(allProducts);
+  } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 
 module.exports = router;

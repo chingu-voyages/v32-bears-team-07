@@ -70,3 +70,30 @@ router.patch("/:orderId", async (req, res) => {
     res.status(404).json("Order not found");
   }
 });
+
+// Delete order
+router.delete("/:orderId", async (req, res) => {
+  const { userId } = req.body;
+  if (userId == null) {
+    return res.status(400).json({
+      error: { message: `Missing userId in request body` },
+    });
+  }
+  try {
+    const order = await Order.findById(req.params.orderId);
+    if (order.userId == userId) {
+      try {
+        await Order.findByIdAndDelete(req.params.orderId);
+        res.status(200).json("Order deleted");
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    } else {
+      res
+        .status(403)
+        .json("The order you are trying to delete belongs to another user.");
+    }
+  } catch (err) {
+    res.status(404).json("Order not found");
+  }
+});
