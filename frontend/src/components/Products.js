@@ -13,7 +13,7 @@ export default function Products(props) {
       setProducts(res);
       console.log(res);
     });
-  });
+  }, []);
 
   return (
     <div>
