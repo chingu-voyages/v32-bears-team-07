@@ -38,12 +38,25 @@ const AuthApiService = {
   },
 
   getCartProducts() {
-    return fetch(`${config.API_ENDPOINT}/userFunctions`, {
+    return fetch(`${config.API_ENDPOINT}/cartRoutes`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
         "authorization": `bearer ${TokenService.getAuthToken()}`,
       },
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
+  },
+
+  addCartProduct() {
+    return fetch(`${config.API_ENDPOINT}/cartRoutes`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "authorization": `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify({ title, description, company, img, price, stock, shipping, digitalProduct, rating, ownerId }),
     }).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     );

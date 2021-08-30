@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import Product from "./Product";
+import CartProduct from "./CartProduct";
 import AuthApiService from "../Api-Service";
 import "./Cart.css";
 
@@ -21,7 +21,7 @@ function Cart() {
           <div className="productsDiv">
             {cartProducts.map((item) => {
               return (
-                <Product
+                <CartProduct
                   key={item.ownerId}
                   id={item.ownerId}
                   img={item.img}

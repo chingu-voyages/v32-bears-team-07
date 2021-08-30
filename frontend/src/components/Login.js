@@ -21,7 +21,7 @@ const Login = (props) => {
         password.value = "";
         TokenService.saveAuthToken(res.authToken);
         console.log(res.authToken);
-        props.history.push("/dashboard");
+        props.history.push("/cart");
       })
 
       .catch((res) => {

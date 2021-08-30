@@ -15,6 +15,10 @@ export default function Products(props) {
     });
   }, []);
 
+  function addToCart() {
+    return AuthApiService.addCartProduct()
+  }
+
   return (
     <div>
       <Container>
@@ -28,6 +32,7 @@ export default function Products(props) {
                   img={item.img}
                   title={item.name}
                   price={item.price}
+                  addToCart={addToCart}
                 />
               );
             })}

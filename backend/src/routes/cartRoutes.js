@@ -20,7 +20,7 @@ router.post("/", requireAuth, async (req, res) => {
   try {
     let customerId = req.user._id;
     const {
-      name,
+      title,
       img,
       description,
       company,
@@ -32,7 +32,7 @@ router.post("/", requireAuth, async (req, res) => {
     } = req.body;
 
     let newCartProduct = {
-      name,
+      title,
       img,
       description,
       company,
