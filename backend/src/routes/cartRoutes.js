@@ -41,6 +41,7 @@ router.post("/", requireAuth, async (req, res, next) => {
       digitalProduct,
       rating,
       ownerId,
+      customerId
     };
 
     for (const [key, value] of Object.entries(newCartProduct)) {
@@ -58,6 +59,7 @@ router.post("/", requireAuth, async (req, res, next) => {
     res.status(200).json(product);
     next();
   } catch (err) {
+    console.log(err)
     res.status(404).json("User not found");
   }
 });
