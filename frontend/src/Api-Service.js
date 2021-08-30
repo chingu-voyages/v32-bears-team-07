@@ -38,11 +38,11 @@ const AuthApiService = {
   },
 
   getCartProducts() {
-    return fetch(`${config.API_ENDPOINT}/cartRoutes`, {
+    return fetch(`${config.API_ENDPOINT}/userFunctions`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        authorization: `bearer ${TokenService.getAuthToken()}`,
+        "authorization": `bearer ${TokenService.getAuthToken()}`,
       },
     }).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()

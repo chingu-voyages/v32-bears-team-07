@@ -6,8 +6,9 @@ const requireAuth = require('../middleware/jwt-auth');
 
 
 // // Edit UserInfo
-router.patch("/:userId", async (req, res) => {
+router.patch("/:userId", requireAuth, async (req, res) => {
   if (req.body._id === req.params.userId) {
+    const customerId = req.body._id
     // if a user wants to update the password the first thing done is hash the password
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10);

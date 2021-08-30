@@ -1,0 +1,12 @@
+.productsDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .productsDiv > div {
+    flex: 0 0 33.333333%;
+  }
+  

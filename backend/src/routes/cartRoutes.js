@@ -5,9 +5,9 @@ const Cart = require("../models/Cart");
 const requireAuth = require("../middleware/jwt-auth");
 
 // Get all cart products by customer
-router.get("/:customerId", requireAuth, async (req, res) => {
+router.get("/", requireAuth, async (req, res) => {
   try {
-    let customerId = req.params.customerId;
+    let customerId = req.user._id;
     const allCartProducts = await Cart.find({ customerId });
     res.status(200).json(allCartProducts);
   } catch (err) {
@@ -16,60 +16,58 @@ router.get("/:customerId", requireAuth, async (req, res) => {
 });
 
 // Add product to cart
-router.post("/", async (req, res) => {
-  const {
-    name,
-    img,
-    description,
-    company,
-    price,
-    stock,
-    digitalProduct,
-    rating,
-    ownerId,
-    customerId,
-  } = req.body;
-  let newCartProduct = {
-    name,
-    img,
-    description,
-    company,
-    price,
-    stock,
-    digitalProduct,
-    rating,
-    ownerId,
-    customerId,
-  };
-  for (const [key, value] of Object.entries(newCartProduct)) {
-    if (value == null) {
-      return res.status(400).json({
-        error: { message: `Missing '${key}' in request body` },
-      });
-    }
-  }
+router.post("/", requireAuth, async (req, res) => {
   try {
-    await User.findById(req.body.customerId);
-    try {
-      newCartProduct = new Cart(newCartProduct);
+    let customerId = req.user._id;
+    const {
+      name,
+      img,
+      description,
+      company,
+      price,
+      stock,
+      digitalProduct,
+      rating,
+      ownerId,
+    } = req.body;
 
-      const product = await newCartProduct.save();
-      res.status(200).json(product);
-    } catch (err) {
-      res.status(500).json(err);
+    let newCartProduct = {
+      name,
+      img,
+      description,
+      company,
+      price,
+      stock,
+      digitalProduct,
+      rating,
+      ownerId,
+    };
+
+    for (const [key, value] of Object.entries(newCartProduct)) {
+      if (value == null) {
+        return res.status(400).json({
+          error: { message: `Missing '${key}' in request body` },
+        });
+      }
     }
+    
+    newCartProduct.customerId = req.user._id;
+    console.log(newCartProduct)
+    newCartProduct = new Cart(newCartProduct);
+    const product = await newCartProduct.save();
+    res.status(200).json(product);
   } catch (err) {
     res.status(404).json("User not found");
   }
 });
 
 // Delete product in cart
-router.delete("/:productCartId", async (req, res) => {
+router.delete("/:productCartId", requireAuth, async (req, res) => {
   try {
     try {
-      await Product.findById(req.params.productId);
+      await Cart.findById(req.params.productId);
       try {
-        await Product.findByIdAndDelete(req.params.productCartId);
+        await Cart.findByIdAndDelete(req.params.productCartId);
         res.status(200).json("Product deleted");
       } catch (err) {
         res.status(500).json(err);
