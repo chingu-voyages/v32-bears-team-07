@@ -10,9 +10,6 @@ export default function Product(props) {
           <Card.Img className="image" variant="top" src={props.img} />
           <Card.Title>{props.title}</Card.Title>
           <Card.Text>${props.price}</Card.Text>
-          <Button variant="primary" onClick={props.addToCart} id={props.id}>
-            Add to Cart
-          </Button>
         </Card>
       </Container>
     </div>

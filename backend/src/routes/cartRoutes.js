@@ -16,7 +16,7 @@ router.get("/", requireAuth, async (req, res) => {
 });
 
 // Add product to cart
-router.post("/", requireAuth, async (req, res) => {
+router.post("/", requireAuth, async (req, res, next) => {
   try {
     let customerId = req.user._id;
     const {
@@ -56,6 +56,7 @@ router.post("/", requireAuth, async (req, res) => {
     newCartProduct = new Cart(newCartProduct);
     const product = await newCartProduct.save();
     res.status(200).json(product);
+    next();
   } catch (err) {
     res.status(404).json("User not found");
   }

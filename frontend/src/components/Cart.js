@@ -25,7 +25,7 @@ function Cart() {
                   key={item.ownerId}
                   id={item.ownerId}
                   img={item.img}
-                  title={item.name}
+                  title={item.title}
                   price={item.price}
                 />
               );

@@ -37,7 +37,7 @@ const SignUp = (props) => {
         passwordConfirm.value = "";
         TokenService.saveAuthToken(user.authToken);
         console.log(user.authToken);
-        props.history.push("/dashboard");
+        props.history.push("/");
       })
       .catch((res) => {
         setError(res);

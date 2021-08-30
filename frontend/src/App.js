@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 // import { Container } from "react-bootstrap";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -22,8 +22,10 @@ const App = () => {
     <div>
       <Header />
       <main className="py-3">
+
+        <Route exact path="/" component={Products} />
+
         <Switch>
-          <PublicRoute exact path="/" component={Products} />
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/register" component={SignUp} />
           <PublicRoute exact path="/product" component={Product} />

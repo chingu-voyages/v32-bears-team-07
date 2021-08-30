@@ -5,7 +5,7 @@ const CartSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      unique: true,
+      unique: false,
     },
     description: {
       type: String,
