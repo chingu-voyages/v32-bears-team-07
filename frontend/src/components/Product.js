@@ -6,8 +6,8 @@ export default function Product(props) {
   return (
     <div>
       <Container>
-        <Card className=".card">
-          <Card.Img className="image" variant="top" src={props.img} />
+        <Card className=".cardProduct">
+          <Card.Img className="imageProduct" src={props.img} />
           <Card.Title>{props.title}</Card.Title>
           <Card.Text>${props.price}</Card.Text>
         </Card>

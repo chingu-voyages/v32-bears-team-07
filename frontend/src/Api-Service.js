@@ -61,6 +61,21 @@ const AuthApiService = {
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     );
   },
+
+  deleteProduct(productId) {
+    return fetch(`${config.API_ENDPOINT}/cartRoutes/${productId}`, {
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json',
+            'authorization': `bearer ${TokenService.getAuthToken()}`,
+        }
+    })
+        .then(res =>
+            (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
+        )
+}
 };
 
 export default AuthApiService;

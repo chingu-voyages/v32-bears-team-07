@@ -1,6 +1,12 @@
+.products {
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+
 .productsDiv {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -14,9 +20,17 @@ li {
   list-style: none;
 }
 
-.button {
-  width: 18rem;
-  margin-left: 20px;
+.buttonProducts {
+  width: 95%;
+  margin-left: 8px;
 }
 
+.productsList {
+  margin-bottom: 20px;
+}
 
+@media all and (min-width: 1000px) {
+  .productsDiv {
+    flex-direction: row;
+  }
+}

@@ -7,7 +7,7 @@ import "./Products.css";
 
 export default function Products(props) {
   const [products, setProducts] = useState("");
-  const [loggedIn, setLoggedIn] = useState('')
+  const [loggedIn, setLoggedIn] = useState('');
 
   //fetches all products
   useEffect(() => {
@@ -80,16 +80,17 @@ export default function Products(props) {
       rating: productRating, 
       ownerId: productOwner 
     });
+    window.location.reload(false);
   }
 
   return (
-    <div>
+    <div className="products">
       <Container>
         {products ? (
           <div className="productsDiv">
             {products.map((item, idx) => {
               return (
-                <li key={idx}>
+                <div className="productsList" key={idx}>
                   <Product
                     id={item._id}
                     img={item.img}
@@ -97,16 +98,16 @@ export default function Products(props) {
                     price={item.price}
                   />
                   {loggedIn ? (
-                    <Button className="button" variant="primary" onClick={addToCart} data-id={idx}>
+                    <Button className="buttonProducts" variant="primary" onClick={addToCart} data-id={idx}>
                       Add to Cart
                     </Button>
                   ) : (
-                    <Button className="button" href="/login">
+                    <Button className="buttonProducts" href="/login">
                       Add to Cart
                     </Button>
                   )}
 
-                </li>
+                </div>
 
               );
             })}
@@ -115,32 +116,4 @@ export default function Products(props) {
       </Container>
     </div>
   );
-
-  // const addToCart = (props) => {
-  //   console.log("add to cart");
-  //   console.log(`Product ID: ${props.target.id}`);
-  // };
-
-  // return (
-  //   <div>
-  //     <Container>
-  //       {props.products ? (
-  //         <div className="productsDiv">
-  //           {props.products.map((item) => {
-  //             return (
-  //               <Product
-  //                 key={item.id}
-  //                 id={item.id}
-  //                 img={item.img}
-  //                 title={item.title}
-  //                 price={item.price}
-  //                 addToCart={addToCart}
-  //               />
-  //             );
-  //           })}
-  //         </div>
-  //       ) : null}
-  //     </Container>
-  //   </div>
-  // );
 }
