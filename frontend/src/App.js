@@ -21,12 +21,12 @@ const App = () => {
       <main className="py-3">
 
         <Route exact path="/" component={Products} />
+        <Route exact path="/grapesjs" component={GrapesJS} />
 
         <Switch>
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/register" component={SignUp} />
           <PublicRoute exact path="/product" component={Product} />
-          <PublicRoute exact path="/grapesjs" component={GrapesJS} />
           <PrivateRoute exact path="/cart" component={Cart} />
           <PrivateRoute exact path="/checkout" component={Checkout} />
           <PrivateRoute exact path="/thank-you" component={ThankYou} />
