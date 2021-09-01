@@ -42,7 +42,7 @@ const Header = () => {
                                 </div>
                             </Nav.Link>
 
-                            {/* <Nav.Link href="/cart"><i className='fas fa-shopping-cart'></i> Cart</Nav.Link> */}
+                            <Nav.Link href="/grapesjs"><i class="fas fa-cube"></i> GrapesJS</Nav.Link>
 
                             {loggedIn ? (
                                 <Nav.Link href="/login" onClick={handleLogoutClick}><i className='fas fa-user'></i> Log Out </Nav.Link>

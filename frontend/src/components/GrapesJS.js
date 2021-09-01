@@ -385,26 +385,34 @@ const GrapesJS = () => {
   });
 
   return (
-    <Container>
-      <div className="panel__top">
-        <div className="panel__basic-actions"></div>
-        <div class="panel__devices"></div>
-        <div class="panel__switcher"></div>
+    <div>
+      
+      <div className="underConstructionMessage">
+        This GrapesJS feature is still under construction
       </div>
-      <div class="editor-row">
-        <div class="editor-canvas">
-          <div id="gjs">
-            <h1>Hello World Component!</h1>
+      
+      <Container>
+        <div className="panel__top">
+          <div className="panel__basic-actions"></div>
+          <div class="panel__devices"></div>
+          <div class="panel__switcher"></div>
+        </div>
+        <div class="editor-row">
+          <div class="editor-canvas">
+            <div id="gjs">
+              <h1>Hello World Component!</h1>
+            </div>
+          </div>
+          <div class="panel__right">
+            <div class="layers-container"></div>
+            <div class="styles-container"></div>
+            <div class="traits-container"></div>
           </div>
         </div>
-        <div class="panel__right">
-          <div class="layers-container"></div>
-          <div class="styles-container"></div>
-          <div class="traits-container"></div>
-        </div>
-      </div>
-      <div id="blocks"></div>
-    </Container>
+        <div id="blocks"></div>
+      </Container>
+
+    </div>
   );
 };
 

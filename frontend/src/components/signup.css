@@ -1,9 +1,15 @@
-/* .signUpContainer {
-  padding-right: 260px;
-  margin-top: 100px;
-} */
-
 .justify-content-center {
-  padding-right: 260px;
   margin-top: 100px;
+}
+
+@media all and (min-width: 1000px) {
+  .justify-content-center {
+    padding-right: 220px;
+  }
+}
+
+@media all and (min-width: 1500px) {
+  .justify-content-center {
+    padding-right: 260px;
+  }
 }

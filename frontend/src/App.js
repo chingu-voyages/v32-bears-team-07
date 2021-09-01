@@ -1,12 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-// import { Container } from "react-bootstrap";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-// import GrapesJS from "./components/GrapesJS";
-// import UserDashboard from "./components/UserDashboard";
+import GrapesJS from "./components/GrapesJS";
 import Products from "./components/Products";
 import Product from "./components/Product";
 import PrivateRoute from "./components/Utils/PrivateRoute";
@@ -28,6 +26,7 @@ const App = () => {
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/register" component={SignUp} />
           <PublicRoute exact path="/product" component={Product} />
+          <PublicRoute exact path="/grapesjs" component={GrapesJS} />
           <PrivateRoute exact path="/cart" component={Cart} />
           <PrivateRoute exact path="/checkout" component={Checkout} />
           <PrivateRoute exact path="/thank-you" component={ThankYou} />
