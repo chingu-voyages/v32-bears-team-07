@@ -11,7 +11,6 @@ import Products from "./components/Products";
 import Product from "./components/Product";
 import PrivateRoute from "./components/Utils/PrivateRoute";
 import PublicRoute from "./components/Utils/PublicRoute";
-import CheckoutForm from "./components/CheckoutForm";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import ThankYou from "./components/ThankYou";

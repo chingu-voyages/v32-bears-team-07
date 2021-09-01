@@ -1,3 +1,9 @@
-.signUpContainer {
-  margin-top: 15vh;
+/* .signUpContainer {
+  padding-right: 260px;
+  margin-top: 100px;
+} */
+
+.justify-content-center {
+  padding-right: 260px;
+  margin-top: 100px;
 }

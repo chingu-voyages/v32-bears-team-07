@@ -31,8 +31,8 @@ const Login = (props) => {
   }
 
   return (
-    <div>
-      <Container className="loginContainer">
+    <div className="loginPage">
+      
         <Row md={1.5} lg={2} className="justify-content-center">
           <Col className="text-center">
             <div className="errorMessage">{error}</div>
@@ -68,7 +68,7 @@ const Login = (props) => {
             </Form>
           </Col>
         </Row>
-      </Container>
+
     </div>
   );
 };

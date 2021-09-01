@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import CartProduct from "./CartProduct";
 import AuthApiService from "../Api-Service";
@@ -82,7 +83,12 @@ function Cart() {
           <div className="orderTotal">
             <div className="priceList">Order total: <div>${orderTotal}</div></div>
           </div>
-          <div className="orderButton"><Button>Place your order</Button></div>
+          <div className="orderButton">
+            <Link to="/checkout">
+            <Button>Place your order</Button>
+            </Link>
+            
+            </div>
         </ul>
       </div>
 

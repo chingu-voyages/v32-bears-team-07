@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function CheckoutForm() {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -75,15 +76,18 @@ export default function CheckoutForm() {
         options={cardStyle}
         onChange={handleChange}
       />
-      <button disabled={processing || disabled || succeeded} id="submit">
-        <span id="button-text">
-          {processing ? (
-            <div className="spinner" id="spinner"></div>
-          ) : (
-            "Pay now"
-          )}
-        </span>
-      </button>
+      <Link to="/thank-you">
+        <button disabled={processing || disabled || succeeded} id="submit">
+          <span id="button-text">
+            {processing ? (
+              <div className="spinner" id="spinner"></div>
+            ) : (
+              "Pay now"
+            )}
+          </span>
+        </button>
+      </Link>
+
       {/* Show any error that happens when processing the payment */}
       {error && (
         <div className="card-error" role="alert">
@@ -91,14 +95,14 @@ export default function CheckoutForm() {
         </div>
       )}
       {/* Show a success message upon completion */}
-      {/* <p className={succeeded ? "result-message" : "result-message hidden"}>
+      <p className={succeeded ? "result-message" : "result-message hidden"}>
         Payment succeeded, see the result in your
         <a href={`https://dashboard.stripe.com/test/payments`}>
           {" "}
           Stripe dashboard.
         </a>{" "}
         Refresh the page to pay again.
-      </p> */}
+      </p>
     </form>
   );
 }
